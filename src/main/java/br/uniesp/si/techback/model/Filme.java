@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity //ANOTACAO PRINCIPAL
 @Table(name = "filmes")
 public class Filme {
 
-    @Id
+    @Id //ANOTACAO PRINCIPAL
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
