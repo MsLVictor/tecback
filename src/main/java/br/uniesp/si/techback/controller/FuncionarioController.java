@@ -13,27 +13,32 @@ import java.util.List;
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
-    private final FuncionarioService service;
+    private final FuncionarioService funcionarioService;
 
     @GetMapping
     public List<Funcionario> listar(){
-        return service.listar();
+        return funcionarioService.listar();
+    }
+
+    @GetMapping("/{id}")
+    public Funcionario buscarPorId(@PathVariable Long id){
+        return funcionarioService.buscarPorId(id);
     }
 
     @PostMapping
     public Funcionario salvar(Funcionario funcionario){
-        return service.Salvar(funcionario);
+        return funcionarioService.Salvar(funcionario);
     }
 
     @PutMapping("/{id}")
     public Funcionario atualizar(@PathVariable Long id,
                                  @RequestBody Funcionario funcionario){
-        return service.atualizar(id, funcionario);
+        return funcionarioService.atualizar(id, funcionario);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Funcionario> excluir(@PathVariable Long id){
-        service.excluir(id);
+        funcionarioService.excluir(id);
         return ResponseEntity.noContent().build();
     }
 

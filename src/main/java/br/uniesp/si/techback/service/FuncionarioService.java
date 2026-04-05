@@ -12,35 +12,43 @@ import java.util.Optional;
 @RequiredArgsConstructor //cria um construtor apenas para as variaveis q estao marcada como final
 public class FuncionarioService {
 
-    private final FuncionarioRepository repository;
+    private final FuncionarioRepository FuncionarioRepository;
+
 
     public List<Funcionario> listar(){
-        return repository.findAll();
+        return FuncionarioRepository.findAll();
     }
 
-    public Funcionario Salvar(Funcionario funcionario){
-        return repository.save(funcionario);
-    }
-
-    public Funcionario atualizar(Long id, Funcionario funcionario){
-        Optional<Funcionario> func = repository.findById(id);
+    public Funcionario buscarPorId(Long id) {
+        Optional<Funcionario> func = FuncionarioRepository.findById(id);
         if(func.isEmpty()){
             throw new RuntimeException("Funcionario inexistente");
         } else {
-            return repository.save(funcionario);
+            return func.get();
+        }
+    }
+
+    public Funcionario Salvar(Funcionario funcionario){
+        return FuncionarioRepository.save(funcionario);
+    }
+
+    public Funcionario atualizar(Long id, Funcionario funcionario){
+        Optional<Funcionario> func = FuncionarioRepository.findById(id);
+        if(func.isEmpty()){
+            throw new RuntimeException("Funcionario inexistente");
+        } else {
+            return FuncionarioRepository.save(funcionario);
         }
     }
 
 
 
     public void excluir(Long id){
-        if(!repository.existsById(id)){
+        if(!FuncionarioRepository.existsById(id)){
             throw new RuntimeException("Id não encontrado");
         }
-        repository.deleteById(id);
+        FuncionarioRepository.deleteById(id);
     }
-
-
 
 
 
