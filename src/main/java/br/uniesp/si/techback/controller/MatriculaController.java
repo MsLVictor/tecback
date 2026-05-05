@@ -1,5 +1,6 @@
 package br.uniesp.si.techback.controller;
 
+import br.uniesp.si.techback.model.Funcionario;
 import br.uniesp.si.techback.model.Matricula;
 import br.uniesp.si.techback.service.MatriculaService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,11 @@ public class MatriculaController {
     @PostMapping
     public Matricula salvar(@RequestBody Matricula matricula){
         return matriculaService.salvar(matricula);
+    }
+
+    @PostMapping
+    public Funcionario incluir(@RequestBody Funcionario funcionario) {
+        return funcionarioService.incluir(funcionario);
     }
 
     @PutMapping("/{id}")
